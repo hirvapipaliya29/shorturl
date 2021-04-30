@@ -1,0 +1,41 @@
+<%= form_with(model: short_url, local: true) do |form| %>
+  <% if !short_url.nil? && short_url.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(short_url.errors.count, "error") %> prohibited this short_url from being saved:</h2>
+
+      <ul>
+      <% short_url.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Shorten URL</div>
+        </div>
+
+         <div class="card-body">
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <%= form.label :url %><label style="color:red">*</label>
+                <%= form.text_field :url, class: 'form-control', placeholder: 'URL', required: true %>
+              </div>
+            </div>
+         </div>
+
+         <div class="card-action">
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <%= form.submit 'Shorten URL', :class => 'btn btn-primary' %>
+              <%= link_to 'Back', short_urls_path, :class => 'btn btn-secondary' %>
+            </div>
+          </div>
+        </div>
+    </div>    
+  </div>
+</div>
+<% end %>
